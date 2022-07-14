@@ -1,0 +1,15 @@
+Flask
+Flask-RESTful
+Flask-JWT-Extended
+flask-cors
+pandas
+Flask-PyMongo
+pymongo
+python-dotenv
+gunicorn 
+click
+dnspython
+itsdangerous
+Jinja2
+MarkupSafe
+Werkzeug
