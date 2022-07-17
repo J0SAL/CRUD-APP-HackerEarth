@@ -1,5 +1,6 @@
 import "./App.css";
 import Gallery from "./components/Gallery";
+import AddImage from "./components/AddImage";
 import Header from "./components/Header";
 import Search from "./components/Search";
 import Pagination from "./components/Pagination";
@@ -61,9 +62,10 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Search />
-      <Gallery images={images} />
-      <Pagination pageCount={pageCount} paginate={paginate} page={page} />
+      {/* <Search /> */}
+      {/* <Gallery images={images} /> */}
+      <AddImage />
+      {/* <Pagination pageCount={pageCount} paginate={paginate} page={page} /> */}
     </div>
   );
 }
