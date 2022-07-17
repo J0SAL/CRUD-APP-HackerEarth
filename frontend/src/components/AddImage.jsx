@@ -4,6 +4,7 @@ const initialState = {
   imageName: "",
   imageDes: "",
   imageFile: undefined,
+  imagePreview: undefined,
 };
 
 const reducer = (state, action) => {
@@ -15,6 +16,8 @@ const reducer = (state, action) => {
       return { ...state, imageDes: action.value };
     case "imageFile":
       return { ...state, imageFile: action.value };
+    case "imagePreview":
+      return { ...state, imagePreview: action.value };
     case "reset":
       return initialState;
     default:
@@ -23,16 +26,15 @@ const reducer = (state, action) => {
 };
 function AddImage() {
   const [data, dispatch] = useReducer(reducer, initialState);
-  const [imagePreview, setPreview] = useState(undefined);
   const imageRef = useRef();
   useEffect(() => {
     if (!data.imageFile) {
       imageRef.current.value = "";
-      setPreview(undefined);
+      dispatch({ type: "imagePreview", value: undefined });
       return;
     }
     const objectUrl = URL.createObjectURL(data.imageFile);
-    setPreview(objectUrl);
+    dispatch({ type: "imagePreview", value: objectUrl });
     return () => URL.revokeObjectURL(objectUrl);
   }, [data.imageFile]);
 
@@ -43,6 +45,10 @@ function AddImage() {
     }
     dispatch({ type: "imageFile", value: value });
   };
+
+  const handleSubmit = () => {
+    console.log("submitting data")
+  }
   return (
     <div className="row mx-0">
       <div className="col-md-6 col-sm-12 px-5">
@@ -75,7 +81,7 @@ function AddImage() {
               }
             ></textarea>
             <div className="d-flex flex-row justify-content-around">
-              <button className="btn btn-secondary" type="button">
+              <button onClick={handleSubmit} className="btn btn-secondary" type="button">
                 Submit
               </button>
               <button
@@ -97,7 +103,7 @@ function AddImage() {
             <center className="py-2">
               <img
                 className="text-center"
-                src={imagePreview}
+                src={data.imagePreview}
                 style={{ width: "50%" }}
               ></img>
             </center>

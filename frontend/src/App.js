@@ -3,6 +3,7 @@ import Gallery from "./components/Gallery";
 import AddImage from "./components/AddImage";
 import Header from "./components/Header";
 import Search from "./components/Search";
+import UploadImage from "./components/UploadImage";
 import Pagination from "./components/Pagination";
 import { useState, useEffect } from "react";
 function App() {
@@ -50,7 +51,7 @@ function App() {
   };
   const paginate = (pageno = 1) => {
     if (pageno === "+1") page !== pageCount && setPage((page) => page + 1);
-    else if (pageno == "-1") page !== 1 && setPage((page) => page - 1);
+    else if (pageno === "-1") page !== 1 && setPage((page) => page - 1);
     else setPage(pageno);
     getImages(pageno);
   };
@@ -64,7 +65,8 @@ function App() {
       <Header />
       {/* <Search /> */}
       {/* <Gallery images={images} /> */}
-      <AddImage />
+      {/* <AddImage /> */}
+      <UploadImage />
       {/* <Pagination pageCount={pageCount} paginate={paginate} page={page} /> */}
     </div>
   );
